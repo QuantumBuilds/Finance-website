@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Ministry of India</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ6P6T6YJC8qCk91xMD7dMwzYyQl3lIkR5ogC2yT+KNQ2mjU9lV2T9F5/j1j" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #E0F7FA;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .header {
+            background-color: #0277BD;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            font-size: 1.3em;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #0288D1;
+            color: white;
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-right: 3px solid #0288D1;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar a {
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #0277BD;
+        }
+
+        .sidebar-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 220px;
+            font-size: 20px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sidebar-collapsed {
+            transform: translateX(-100%);
+        }
+
+        .main-content {
+            margin-left: 270px;
+            padding: 3em 2em;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .box {
+            background-color: #81D4FA;
+            border: 1px solid #0288D1;
+            padding: 2em;
+            margin-bottom: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            background-color: #0277BD;
+            color: white;
+            padding: 0.8em 2em;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #01579B;
+        }
+
+        .footer {
+            background-color: #0277BD;
+            color: #fff;
+            text-align: center;
+            padding: 2em 1.5em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0288D1;
+            color: #fff;
+            border-radius: 8px;
+            width: 300px;
+            height: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .chatbot-header {
+            background-color: #0277BD;
+            color: white;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .chatbot-body {
+            height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #81D4FA;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .chatbot-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .chatbot-input {
+            width: 75%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .chatbot-send {
+            background-color: #0277BD;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .chatbot-send:hover {
+            background-color: #01579B;
+        }
+
+        .finance-minister {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .finance-minister img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .finance-minister:hover {
+            transform: scale(1.05);
+        }
+
+        .section-header {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 1em;
+        }
+
+        .financial-tips, .investment-tips {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5em;
+        }
+
+        .tip-card {
+            background-color: #81D4FA;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Finance Website of Government of India</h1>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <button class="sidebar-close-btn" id="toggleBtn" onclick="toggleSidebar()">&#9776;</button>
+        <a href="website_aboutus.html">About Us</a>
+        <a href="website_incometax.html">Income Tax Calculator</a>
+        <a href="website_gstCalculator.html">GST Calculator</a>
+        <a href="website_govtschemes.html">Government Schemes</a>
+        <a href="website_budgeting.html">Learn Budgeting</a>
+        <a href="website_FAQ.html">FAQ</a>
+        <a href="website_feedback.html">Feedback</a>
+        <a href="website_financeoath.html">Finance Oath Login</a>
+        <a href="https://twitter.com/GovtOfIndia" target="_blank">Social Media</a>
+    </div>
+
+    <div class="main-content">
+        <div class="box">
+            <h2>History of Indian Finance</h2>
+            <p>The economic history of India has undergone significant transformations over the centuries...</p>
+            <button class="btn" onclick="toggleMore()">Read More</button>
+            <div class="more-content" id="more-content">
+                <p>The economic history of India is a rich tapestry that reflects its diverse cultures, civilizations, and periods of prosperity and decline. From ancient times to the present, India's financial landscape has evolved through various phases, each contributing uniquely to its current economic structure...</p><br>
+                The economic history of India is a rich tapestry that reflects its diverse cultures, civilizations, and periods of prosperity and decline. From ancient times to the present, India's financial landscape has evolved through various phases, each contributing uniquely to its current economic structure.<br>
+                <b>Ancient and Medieval Periods</b><br>
+                In ancient India, the economy was predominantly agrarian, supplemented by trade and commerce. The Vedic texts mention the concept of usury, indicating early forms of financial transactions. During the Mauryan period (321–185 BCE), instruments akin to modern bills of exchange were in use, facilitating trade across regions. The medieval period saw the evolution of 'hundis,' a type of credit instrument, and the establishment of banking practices that supported trade and commerce.
+                <br><b>Colonial Era</b><br>
+                The British colonial period (1858-1947) had a profound impact on India's financial system. The establishment of the Reserve Bank of India in 1935 marked a significant development in the country's banking sector. However, the colonial policies led to the deindustrialization of India, with a focus on raw material extraction and export, which adversely affected the indigenous industries. <br>
+                <b>Post-Independence Developments</b><br>
+                After gaining independence in 1947, India adopted a mixed economy model, combining elements of socialism and capitalism. The government nationalized major banks in 1969 and 1980 to promote financial inclusion and direct credit to priority sectors like agriculture and small-scale industries. This led to an increase in the number of bank branches and a significant rise in total deposits. <br>
+                <b>Economic Liberalization</b><br>
+                In 1991, India embarked on a path of economic liberalization, introducing reforms that opened up the economy to private and foreign investments. The banking sector underwent significant changes, with the entry of private and foreign banks, leading to increased competition and improved services. The insurance sector was also liberalized, allowing private players to enter the market. <br>
+                <b>Modern Financial Landscape</b><br>
+                Today, India's financial system is characterized by a diverse range of institutions, including commercial banks, cooperative banks, and non-banking financial companies (NBFCs). The Reserve Bank of India continues to play a pivotal role in regulating and overseeing the financial system. The stock market, with the Bombay Stock Exchange and the National Stock Exchange, has become one of the largest in the world, reflecting the country's growing economic stature. <br>
+                In conclusion, the history of Indian finance is a testament to the country's resilience and adaptability. From ancient trade practices to modern financial markets, India has continually evolved its financial systems to meet the changing needs of its economy and society. <br>  
+            </div>
+        </div>
+
+        <div class="box">
+            <h2 style="text-align: center;">Finance Minister Of India</h2>
+            <div class="finance-minister">
+                <img src="NirmalaSitharaman.png" alt="Finance Minister">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Government of India - Finance Ministry</p>
+    </div>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header">
+            MYANSWERS
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <p><strong>MYANSWERS:</strong> Hello! How can I assist you today?</p>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message...">
+            <button class="chatbot-send" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleBtn');
+            sidebar.classList.toggle('sidebar-collapsed');
+            toggleBtn.textContent = sidebar.classList.contains('sidebar-collapsed') ? '→' : '←';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbot-input').value;
+            if (input.trim() !== "") {
+                const chatbotBody = document.getElementById('chatbot-body');
+                const newMessage = document.createElement('p');
+                newMessage.innerHTML = "<strong>You:</strong> " + input;
+                chatbotBody.appendChild(newMessage);
+                document.getElementById('chatbot-input').value = "";
+
+                setTimeout(() => {
+                    const botResponse = document.createElement('p');
+                    botResponse.innerHTML = "<strong>YOURSOLUTIONS:</strong> I'm here to help you!";
+                    chatbotBody.appendChild(botResponse);
+                    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        function toggleMore() {
+            const moreContent = document.getElementById('more-content');
+            const moreBtn = document.querySelector('.btn');
+            moreContent.style.display = moreContent.style.display === 'block' ? 'none' : 'block';
+            moreBtn.textContent = moreContent.style.display === 'block' ? 'Read Less' : 'Read More';
+        }
+    </script>
+</body>
+</html>

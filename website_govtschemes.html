@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOI Finance Schemes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            color: #0277BD;
+        }
+
+        .card {
+            background-color: #fff;
+            color: midnightblue;
+            border: 1px solid #ccc;
+        }
+
+        .scheme-card {
+            transition: 0.3s;
+            background-color: #e0e0e0;
+        }
+
+        .scheme-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px ;
+            background-color: #d6d6d6;
+        }
+
+        .badge {
+            background-color: #0277BD;
+            color: #fff;
+        }
+
+        .form-control {
+            background-color: #ddd;
+            color: #000;
+            border: 1px solid #999;
+        }
+
+        .form-control::placeholder {
+            color: #666;
+        }
+        .form-select {
+            color: black !important;
+        }
+
+        .form-select option {
+            color: black !important;
+        }
+
+        .dropdown-toggle::after {
+            filter: invert(100%); 
+        }
+
+        marquee {
+            font-size: 0.9rem;
+            color: lightcoral;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Government Finance Schemes</h1>
+
+        <!-- Marquee with countdown -->
+        <marquee id="announcement" behavior="scroll" direction="left">
+            Big announcement related to changes in payable tax rules coming up in <span id="countdown"></span>
+        </marquee>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="search" class="form-control" placeholder="Search for a scheme...">
+            </div>
+            <div class="col-md-6">
+                <select id="category" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="Business">Business</option>
+                    <option value="Education">Education</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="Women">Women</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" id="scheme-list"></div>
+    </div>
+
+    <script>
+        const schemes = [
+            { name: "Mudra Loan", category: "Business", description: "Loans up to 10 lakh for small businesses." },
+            { name: "PMEGP", category: "Business", description: "Prime Minister’s Employment Generation Programme." },
+            { name: "Stand Up India", category: "Business", description: "Loans for SC/ST and women entrepreneurs." },
+            { name: "Startup India", category: "Business", description: "Support for startup businesses in India." },
+            { name: "PM Kisan", category: "Agriculture", description: "Financial aid to farmers." },
+            { name: "KCC", category: "Agriculture", description: "Kisan Credit Card for farmers." },
+            { name: "PMFBY", category: "Agriculture", description: "Pradhan Mantri Fasal Bima Yojana - Crop Insurance." },
+            { name: "Sukanya Samriddhi Yojana", category: "Women", description: "Savings scheme for girl children." },
+            { name: "PMVVY", category: "Women", description: "Pension scheme for senior citizens." },
+            { name: "NSP Scholarships", category: "Education", description: "Scholarships for students across India." },
+            { name: "Education Loan", category: "Education", description: "Government-backed education loans." },
+            { name: "Atal Pension Yojana", category: "Women", description: "Pension scheme for unorganized sector workers." },
+            { name: "NABARD Rural Finance", category: "Agriculture", description: "Loans for rural development." },
+            { name: "Dairy Entrepreneurship", category: "Agriculture", description: "Loans for dairy business." },
+            { name: "National Rural Livelihood Mission", category: "Women", description: "Self-employment for rural women." },
+            { name: "PM Awas Yojana", category: "Business", description: "Housing loan scheme." },
+            { name: "Swavalamban Scheme", category: "Women", description: "Financial inclusion for women entrepreneurs." },
+            { name: "Udyogini Scheme", category: "Women", description: "Loans for women entrepreneurs." },
+            { name: "Scholarship for Higher Education", category: "Education", description: "Support for higher education students." },
+            { name: "Fertilizer Subsidy", category: "Agriculture", description: "Financial support for farmers' fertilizers." }
+        ];
+
+        function displaySchemes() {
+            const search = $('#search').val().toLowerCase();
+            const category = $('#category').val();
+            const filteredSchemes = schemes.filter(s => 
+                (s.name.toLowerCase().includes(search) || s.description.toLowerCase().includes(search)) && 
+                (category === "" || s.category === category)
+            );
+            $('#scheme-list').html(filteredSchemes.map(s => ` 
+                <div class="col-md-4 mb-3">
+                    <div class="card scheme-card p-3">
+                        <h5>${s.name}</h5>
+                        <p>${s.description}</p>
+                        <span class="badge bg-primary">${s.category}</span>
+                    </div>
+                </div>
+            `).join(''));
+        }
+        $('#search, #category').on('input', displaySchemes);
+        $(document).ready(displaySchemes);
+
+        // Countdown timer logic
+        function updateCountdown() {
+            const targetDate = new Date("February 20, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "The announcement is here!";
+            } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Update every second
+    </script>
+</body>
+</html>

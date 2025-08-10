@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Feedback Form</title>
+    <style> 
+        * {
+            margin: 0; 
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #81D4FA;
+            color: #333;
+            padding: 20px;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0277BD;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0277BD;
+        }
+
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #0277BD;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background-color: #0277BD;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #01579B;
+        }
+
+        .feedback-section {
+            margin-bottom: 20px;
+        }
+
+        .feedback-section p {
+            margin-bottom: 8px;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .align-left {
+            text-align: left;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Government Finance Website Feedback</h1>
+        <p class="align-center">Please share your feedback to help us improve our website. Your responses are anonymous and greatly appreciated.</p>
+
+        <form action="#" method="post">
+            <div class="feedback-section">
+                <label for="name">Full Name (Optional):</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name (Optional)">
+            </div>
+
+            <div class="feedback-section">
+                <label for="email">Email (Optional):</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email (Optional)">
+            </div>
+
+            <div class="feedback-section">
+                <p>What aspects of the website did you find problematic?</p>
+                <div class="radio-group">
+                    <label for="ease_of_use">
+                        <input type="radio" id="ease_of_use" name="problem" value="Ease of Use"> Ease of Use
+                    </label>
+                    <label for="content_understanding">
+                        <input type="radio" id="content_understanding" name="problem" value="Content Understanding"> Content Understanding
+                    </label>
+                    <label for="navigation">
+                        <input type="radio" id="navigation" name="problem" value="Navigation"> Navigation
+                    </label>
+                    <label for="page_speed">
+                        <input type="radio" id="page_speed" name="problem" value="Page Speed"> Page Speed
+                    </label>
+                </div>
+            </div>
+
+            <div class="feedback-section">
+                <label for="feedback">Please provide your feedback or suggestions for improvement:</label>
+                <textarea id="feedback" name="feedback" rows="4" placeholder="Share your thoughts here..."></textarea>
+            </div>
+
+            <div class="feedback-section">
+                <label for="rating">How would you rate the overall experience?</label>
+                <select id="rating" name="rating">
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="average">Average</option>
+                    <option value="poor">Poor</option>
+                </select>
+            </div>
+
+            <div class="align-center">
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

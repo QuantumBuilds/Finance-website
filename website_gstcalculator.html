@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0F7FA;
+            color: #000000;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            border-left: 5px solid #0288D1;
+            border-top: 5px solid #0288D1;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #0288D1;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #0288D1;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #F1F8FF;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #0288D1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0277BD;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            border-left: 5px solid #0288D1;
+            padding: 10px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>GST Calculator</h2>
+        <div class="input-group">
+            <label for="productType">Type of Product:</label>
+            <input type="text" id="productType" placeholder="Enter product type (e.g., Electronics, Clothing)" required>
+        </div>
+        <div class="input-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" placeholder="Enter quantity" required>
+        </div>
+        <div class="input-group">
+            <label for="sellingPrice">Selling Price (per unit):</label>
+            <input type="number" id="sellingPrice" placeholder="Enter price per unit (INR)" required>
+        </div>
+        <div class="input-group">
+            <label for="gstRate">Select GST Rate:</label>
+            <select id="gstRate">
+                <option value="5">5%</option>
+                <option value="12">12%</option>
+                <option value="18">18%</option>
+                <option value="28">28%</option>
+            </select>
+        </div>
+        <button class="btn" onclick="calculateGST()">Calculate GST</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateGST() {
+            const productType = document.getElementById("productType").value.trim();
+            const quantity = parseInt(document.getElementById("quantity").value);
+            const sellingPrice = parseFloat(document.getElementById("sellingPrice").value);
+            const gstRate = parseFloat(document.getElementById("gstRate").value);
+
+            if (productType === "") {
+                alert("Please enter the product type.");
+                return;
+            }
+
+            if (isNaN(quantity) || quantity <= 0) {
+                alert("Please enter a valid quantity.");
+                return;
+            }
+
+            if (isNaN(sellingPrice) || sellingPrice <= 0) {
+                alert("Please enter a valid selling price.");
+                return;
+            }
+
+            if (isNaN(gstRate) || gstRate <= 0) {
+                alert("Please select a valid GST rate.");
+                return;
+            }
+
+            const totalAmount = quantity * sellingPrice;
+            const gstAmount = (totalAmount * gstRate) / 100;
+            const finalAmount = totalAmount + gstAmount;
+
+            document.getElementById("result").innerHTML = `
+                <p>Product Type: ${productType}</p>
+                <p>Quantity: ${quantity}</p>
+                <p>Selling Price per Unit: ₹${sellingPrice.toFixed(2)}</p>
+                <p>Total Amount (Excluding GST): ₹${totalAmount.toFixed(2)}</p>
+                <p>GST Amount (${gstRate}%): ₹${gstAmount.toFixed(2)}</p>
+                <p>Total Amount (Including GST): ₹${finalAmount.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

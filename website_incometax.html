@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator - Union Budget 2025</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #E0F7FA;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .calculator-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            border-left: 5px solid #0288D1;
+            border-top: 5px solid #0288D1;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0288D1;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #0288D1;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #F1F8FF;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #0288D1;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #0277BD;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-size: 16px;
+            border-left: 5px solid #0288D1;
+            color: #333;
+        }
+        @media (max-width: 480px) {
+            .calculator-container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h1>Income Tax Calculator 2025</h1>
+        <form id="taxForm">
+            <div class="form-group">
+                <label for="annualIncome">Annual Income (₹):</label>
+                <input type="number" id="annualIncome" name="annualIncome" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age Group:</label>
+                <select id="age" name="age" required>
+                    <option value="below60">Below 60</option>
+                    <option value="60to80">60 to 80</option>
+                    <option value="above80">Above 80</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Calculate Tax</button>
+        </form>
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.getElementById('taxForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const annualIncome = parseFloat(document.getElementById('annualIncome').value);
+            const ageGroup = document.getElementById('age').value;
+            let tax = 0;
+
+            if (annualIncome <= 1200000) {
+                tax = 0;
+            } else if (annualIncome <= 1500000) {
+                tax = (annualIncome - 1200000) * 0.05;
+            } else if (annualIncome <= 2000000) {
+                tax = 15000 + (annualIncome - 1500000) * 0.10;
+            } else if (annualIncome <= 2500000) {
+                tax = 65000 + (annualIncome - 2000000) * 0.15;
+            } else if (annualIncome <= 3000000) {
+                tax = 140000 + (annualIncome - 2500000) * 0.20;
+            } else {
+                tax = 240000 + (annualIncome - 3000000) * 0.30;
+            }
+
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').innerText = `Estimated Tax Payable: ₹${tax.toFixed(2)}`;
+        });
+    </script>
+
+</body>
+</html>

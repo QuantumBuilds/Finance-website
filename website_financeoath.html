@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Oath</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            padding: 40px;
+            color: #333;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #1e3d58;
+        }
+        .form-label {
+            font-size: 18px;
+            color: #1e3d58;
+        }
+        .form-control {
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #0288d1;
+            border-color: #0288d1;
+            color: #fff;
+            font-size: 18px;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0277bd;
+            border-color: #0277bd;
+        }
+        #poem {
+            display: none;
+            margin-top: 30px;
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        #poem h3 {
+            font-size: 26px;
+            color: #1e3d58;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #poem p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            color: #555;
+            font-size: 14px;
+            margin-top: 50px;
+        }
+        .user-count {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0288d1;
+        }
+        .alert {
+            display: none;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group-text {
+            background-color: #0288d1;
+            color: white;
+            border-radius: 8px 0 0 8px;
+        }
+        .input-group input {
+            border-radius: 0 8px 8px 0;
+            padding: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Finance Oath</h1>
+        
+        <form id="oathForm">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                <input type="text" class="form-control" id="phone" placeholder="Phone Number" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Join the Oath</button>
+        </form>
+
+        <div id="poem">
+            <h3>Poem: "The Oath"</h3>
+            <p>
+                I promise not to waste the wealth I hold,<br>
+                To give to those whose stories remain untold.<br>
+                I swear to share, and never be blind,<br>
+                To help those who are left behind.<br><br>
+                For wealth is but a fleeting thing,<br>
+                It is the kindness that I bring,<br>
+                That will echo long after I'm gone,<br>
+                Helping others carry on.<br><br>
+                So with this oath, I do declare,<br>
+                That I'll be kind and always care.
+            </p>
+            <p class="user-count" id="total-users"></p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Finance Oath. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        let userCount = 0;
+
+        $(document).ready(function() {
+            $("#oathForm").submit(function(event) {
+                event.preventDefault();
+
+                const name = $("#name").val();
+                const email = $("#email").val();
+                const phone = $("#phone").val();
+
+                if (name && email && phone) {
+                    userCount++;
+
+                    $("#poem").fadeIn();
+                    $("#total-users").text(`Total Users who have joined the oath: ${userCount}`);
+                    
+                    $("#oathForm")[0].reset();
+                    $("#name").focus();
+                }
+            });
+
+            $("#name").focus();
+        });
+    </script>
+
+</body>
+</html>

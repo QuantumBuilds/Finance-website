@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Budgeting - Government of India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #002147;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .budget-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #002147;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            background: #002147;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Finance Budgeting - Government of India</div>
+    <div class="container">
+        <div class="content">
+            <h2>Budget Planning</h2>
+            <br>
+            <p>Use this tool to plan your monthly finances effectively.</p>
+            <br>
+            <form class="budget-form">
+                <label for="income">Annual Income (INR)</label>
+                <input type="number" id="income" placeholder="Enter your annual income">
+                
+                <label for="expenses">Estimated Monthly Expenses (INR)</label>
+                <input type="number" id="expenses" placeholder="Enter your monthly expenses">
+                
+                <label for="savings">Target Monthly Savings (INR)</label>
+                <input type="number" id="savings" placeholder="Enter savings goal">
+                
+                <button type="button" onclick="calculateBudget()">Calculate Budget</button>
+                <br>
+            </form>
+            <h3>Annual Tax: <span id="tax">0</span> INR</h3>
+            <br>
+            <h3>Remaining Annual Balance: <span id="remaining">0</span> INR</h3>
+        </div>
+    </div>
+    <div class="footer">&copy; 2025 Government of India - Finance Ministry</div>
+
+    <script>
+        function calculateBudget() {
+            let income = document.getElementById('income').value || 0;
+            let expenses = document.getElementById('expenses').value || 0;
+            let savings = document.getElementById('savings').value || 0;
+            let tax = calculateIncomeTax(income);
+            let remaining = income - tax - (expenses * 12) - (savings * 12);
+            
+            document.getElementById('tax').textContent = tax;
+            document.getElementById('remaining').textContent = remaining;
+        }
+        
+        function calculateIncomeTax(income) {
+            let tax = 0;
+            if (income <= 300000) {
+                tax = 0;
+            } else if (income <= 600000) {
+                tax = (income - 300000) * 0.05;
+            } else if (income <= 900000) {
+                tax = (300000 * 0.05) + (income - 600000) * 0.1;
+            } else if (income <= 1200000) {
+                tax = (300000 * 0.05) + (300000 * 0.1) + (income - 900000) * 0.15;
+            } else if (income <= 1500000) {
+                tax = (300000 * 0.05) + (300000 * 0.1) + (300000 * 0.15) + (income - 1200000) * 0.2;
+            } else {
+                tax = (300000 * 0.05) + (300000 * 0.1) + (300000 * 0.15) + (300000 * 0.2) + (income - 1500000) * 0.3;
+            }
+            return tax;
+        }
+    </script>
+</body>
+</html>
