@@ -13,6 +13,7 @@ A responsive, multi-page website designed to provide users with easy access to f
 - Responsive Design – Optimized for desktop and mobile devices.
 
 ## 📂 Project Structure
+```
 WebDevCP/
 ├── website_mainpage.html       # Homepage with navigation
 ├── website_gstcalculator.html  # GST Calculator tool
@@ -26,6 +27,7 @@ WebDevCP/
 │   ├── Nirmala.png
 │   ├── background.png
 │   ├── ...
+```
 
 ## 📸 Screenshots
 | Main Page | GST Calculator | Finance Oath |
