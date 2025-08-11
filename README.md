@@ -30,9 +30,9 @@ WebDevCP/
 ```
 
 ## 📸 Screenshots
-| Main Page | GST Calculator | Finance Oath |
-|-----------|---------------|--------------|
-| ![Main Page](./WebDevCP/Screenshot%202025-02-28%20at%204.19.55%20PM.png) | ![GST Calculator](./WebDevCP/Screenshot%202025-02-28%20at%204.24.56%20PM.png) | ![Finance Oath](./WebDevCP/Screenshot%202025-02-28%20at%204.25.25%20PM.png) |
+| Main Page | GST Calculator | Govt Schemes | Finance Oath |
+|-----------|---------------|--------------|--------------|
+| <img src="images/1.png" width="300" /> | <img src="images/2.png" width="300" /> | <img src="images/3.png" width="300" /> | <img src="images/4.png" width="300" /> |
 
 ## 🛠️ Technologies Used
 - HTML5 – Page structure
